@@ -1,0 +1,29 @@
+<p>
+    <!-- o componente altera o template-->
+    <!-- one way databind -->
+    <!-- <label>Nome</label>
+    <input type="text" [value]="name">
+    {{name}} -->
+</p>
+
+
+<!-- o componente altera o template e vice versa -->
+<!-- two way databind -->
+<p>
+    <label>Nome</label>
+    <input type="text" [(ngModel)]="employee.name">
+</p>
+<p>
+    <label>Salary</label>
+    <input type="number" [(ngModel)]="employee.salary">
+</p>
+<!-- <p *ngIf="salary < 1000"> -->
+<p [hidden]="!(employee.salary < 1000)">
+    <label>Bonus</label>
+    <input type="number" [(ngModel)]="employee.bonus">
+</p>
+<!-- ao declarar uma propriedade entre parênteses, então se declara um evento-->
+<input [disabled]="!(employee.salary > 0)" type="button" value="Ok" (click)="add($event)">
+{{employee.name}}
+
+<p is="Informação">{{employee.name}}</p>
