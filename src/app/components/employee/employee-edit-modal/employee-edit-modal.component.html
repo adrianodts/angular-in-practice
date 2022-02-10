@@ -26,12 +26,18 @@
                             </div>
                             <div class="mb-3">
                                 <label>Salary</label>
-                                <input type="number" name="salary" class="form-control" [(ngModel)]="employee.salary">
+                                <div class="input-group">
+                                    <div class="input-group-text">R$</div>
+                                    <input type="number" name="salary" class="form-control" [(ngModel)]="employee.salary">
+                                </div>
                             </div>
                             <!-- <p *ngIf="salary < 1000"> -->
                             <div class="mb-3" [hidden]="!(employee.salary < 1000)">
                                 <label>Bonus</label>
-                                <input type="number" name="bonus" class="form-control" [(ngModel)]="employee.bonus">
+                                <div class="input-group">
+                                    <div class="input-group-text">R$</div>
+                                    <input type="number" name="bonus" class="frm-control" [(ngModel)]="employee.bonus">
+                                </div>
                             </div>
                         </div>
                     </div>

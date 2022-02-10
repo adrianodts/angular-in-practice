@@ -1,5 +1,5 @@
 import { Directive, ElementRef, HostListener, Injector, Input } from '@angular/core';
-import { MyCurrencyPipe } from './my-currency.pipe';
+import { MyCurrencyPipe } from '.././pipes/my-currency.pipe';
 
 @Directive({
   selector: '[salaryColor]',
