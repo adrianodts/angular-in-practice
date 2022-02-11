@@ -1,7 +1,8 @@
 <form (submit)="save($event)">
+    <!-- <modal (onShow)="opened($event)" (onHide)="closed($event)" > -->
     <modal>
-        <h5 class="modal-title" modal-title>Edit employee {{employee?.name}}</h5>
-        <div class="modal-body" modal-body *ngIf="employee">
+        <h5 modal-title>Edit employee {{employee?.name}}</h5>
+        <div modal-body *ngIf="employee">
             <div class="card">
                 <div class="card-body">
                     <div class="row">
@@ -28,7 +29,7 @@
                 </div>
             </div>
         </div>
-        <div class="modal-footer" modal-footer>
+        <div modal-footer>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <input type="submit" class="btn btn-primary" value="Save">
             <!-- <input type="button" [disabled]="!(employee.salary > 0)"  class="btn btn-primary" value="Save" (click)="save($event)"> -->

@@ -82,6 +82,14 @@ export class EmployeeListComponent implements OnInit {
     this.showMessageSuccess = false;
     this.showMessageError = false;
   }
+
+  public closed(event: Event): void {
+      console.log(event);
+  }
+
+  public opened(event: Event): void {
+      console.log(event);
+  }
 }
 
 

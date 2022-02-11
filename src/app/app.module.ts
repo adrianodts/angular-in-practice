@@ -17,6 +17,7 @@ import { EmployeeEditModalComponent } from './components/employee/employee-edit-
 import { EmployeeDeleteModalComponent } from './components/employee/employee-delete-modal/employee-delete-modal.component';
 import { MyCurrencyPipe } from './pipes/my-currency.pipe';
 import { ModalComponent } from './components/modal/modal.component';
+import { BaseModalDirective } from './directives/base-modal.directive'
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import { ModalComponent } from './components/modal/modal.component';
     EmployeeDeleteModalComponent,
     MyCurrencyPipe,
     ModalComponent,
+    BaseModalDirective
   ],
   imports: [
     BrowserModule,

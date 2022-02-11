@@ -1,13 +1,13 @@
 import { Component, ElementRef, OnInit, Output, EventEmitter, ViewChild} from '@angular/core';
+import { BaseModalDirective } from 'src/app/directives/base-modal.directive';
 import { Employee, EmployeeService } from '../../../services/employee.service';
-import { ModalComponent } from '../../modal/modal.component';
 
 @Component({
   selector: 'employee-new-modal',
   templateUrl: './employee-new-modal.component.html',
   styleUrls: ['./employee-new-modal.component.css']
 })
-export class EmployeeNewModalComponent implements OnInit {
+export class EmployeeNewModalComponent extends BaseModalDirective implements OnInit {
 
   employee: Employee = {
     name: '',
@@ -15,14 +15,11 @@ export class EmployeeNewModalComponent implements OnInit {
     bonus: 0
   }
 
-  @ViewChild(ModalComponent)
-  modalComponent: any;
-
-  // saida de dados
   @Output()
   onSubmit: EventEmitter<Employee> = new EventEmitter<Employee>();
 
   constructor(private employeeService: EmployeeService) { 
+    super();
   }
 
   public add(event: Event): void {
@@ -35,15 +32,8 @@ export class EmployeeNewModalComponent implements OnInit {
     this.hide();
   }
 
-  private hide() {
-    this.modalComponent.hide();
-  }
-
-  public show() {
-    this.modalComponent.show()
-  }
-
   ngOnInit(): void {
+    super.init();
   }
 
 }
