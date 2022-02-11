@@ -1,18 +1,22 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { EmployeeDeleteModalComponent } from '../employee-delete-modal/employee-delete-modal.component';
 import { EmployeeEditModalComponent } from '../employee-edit-modal/employee-edit-modal.component';
 import { EmployeeNewModalComponent } from '../employee-new-modal/employee-new-modal.component';
-import { Employee, EmployeeService } from '../employee.service';
+import { Employee, EmployeeService } from '../../../services/employee.service';
+
 
 @Component({
   selector: 'employee-list',
   templateUrl: './employee-list.component.html',
-  styleUrls: ['./employee-list.component.css']
+  styleUrls: ['./employee-list.component.css'],
 })
 export class EmployeeListComponent implements OnInit {
   
-  @ViewChild(EmployeeNewModalComponent)
+  // @ViewChild(EmployeeNewModalComponent)
+  // employeeNewModal: any;
+  @ViewChild(EmployeeNewModalComponent) 
   employeeNewModal: any;
+
 
   @ViewChild(EmployeeEditModalComponent)
   employeeEditModal: any;
@@ -29,28 +33,33 @@ export class EmployeeListComponent implements OnInit {
   employees: Array<Employee>;
 
   constructor(public employeeService: EmployeeService) { 
-    this.employees = this.employeeService.employees
+    this.employees = this.employeeService.employees;
+
 
   }
+  
+  // ngAfterViewInit(): void {
+  //   setTimeout(() => console.log('ngAfterViewInit() : ', this.employeeNewModal.name),500)
+  // }
 
   ngOnInit(): void {
   }
 
   public newEmployee() {
-    this.employeeNewModal.show();
     this.disableAlerts();
+    this.employeeNewModal.show();
   }
 
   public editEmployee(employee: Employee) {
-    this.employeeToEdit = employee;
     this.disableAlerts();
+    this.employeeToEdit = employee;
     this.employeeEditModal.show();
   }
 
   public destroyEmployee(employee: Employee) {
+    this.disableAlerts();
     this.employeeToDelete = employee;
     this.employeeDeleteModal.show();
-    this.disableAlerts();
   }
 
   public onNewEmployee(employee: Employee) {
@@ -72,6 +81,14 @@ export class EmployeeListComponent implements OnInit {
   public disableAlerts() {
     this.showMessageSuccess = false;
     this.showMessageError = false;
+  }
+
+  public closed(event: Event): void {
+      console.log(event);
+  }
+
+  public opened(event: Event): void {
+      console.log(event);
   }
 }
 

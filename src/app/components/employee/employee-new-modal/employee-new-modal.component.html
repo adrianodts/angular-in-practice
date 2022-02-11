@@ -1,13 +1,8 @@
-<!-- Modal -->
-<div class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <form (submit)="save($event)">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit employee {{employee?.name}}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" *ngIf="employee">
+    <form (submit)="add($event)">
+        <!-- <modal (onShow)="opened($event)" (onHide)="closed($event)"> -->
+        <modal>
+            <h5 class="modal-title" modal-title>New Employee</h5>
+            <div class="modal-body" modal-body>
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
@@ -26,23 +21,28 @@
                             </div>
                             <div class="mb-3">
                                 <label>Salary</label>
-                                <input type="number" name="salary" class="form-control" [(ngModel)]="employee.salary">
+                                <div class="input-group">
+                                    <div class="input-group-text">R$</div>
+                                    <input type="number" name="salary" class="form-control" [(ngModel)]="employee.salary">
+                                </div>
                             </div>
                             <!-- <p *ngIf="salary < 1000"> -->
                             <div class="mb-3" [hidden]="!(employee.salary < 1000)">
                                 <label>Bonus</label>
-                                <input type="number" name="bonus" class="form-control" [(ngModel)]="employee.bonus">
+                                <div class="input-group">
+                                    <div class="input-group-text">R$</div>
+                                    <input type="number" name="bonus" class="form-control" [(ngModel)]="employee.bonus">
+                                </div>
                             </div>
+                           <!-- {{employee.name}}
+                            <p is="Informação">{{employee.name}}</p> -->
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" modal-footer>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <input type="button" class="btn btn-primary" value="Save" (click)="save($event)">
-                <!-- <input [disabled]="!(employee.salary > 0)" type="button" class="btn btn-primary" value="Save" (click)="save($event)"> -->
+                <button [disabled]="!(employee.salary > 0)" type="submit" class="btn btn-primary">Add</button>
             </div>
-            </div>
-        </div>
-    </form>
-</div>
+    </modal>
+</form>

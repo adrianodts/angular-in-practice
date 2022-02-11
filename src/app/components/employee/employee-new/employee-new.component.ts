@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Employee, EmployeeService } from '../employee.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Employee, EmployeeService } from '../../../services/employee.service';
+import { ModalComponent } from '../../modal/modal.component';
+
 
 @Component({
   selector: 'employee-new',
@@ -14,10 +16,10 @@ export class EmployeeNewComponent implements OnInit {
     bonus: 0
   }
 
+  @ViewChild(ModalComponent)
+  modalComponent: any;
+
   constructor(private employeeService: EmployeeService) { 
-    // setTimeout(() => {
-    //   this.name = 'Adriano Silva';
-    // }, 3000);
   }
 
   public add(event: Event): void {
@@ -30,4 +32,11 @@ export class EmployeeNewComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  private hide() {
+    this.modalComponent.hide();
+  }
+
+  public show() {
+    this.modalComponent.show();
+  }
 }

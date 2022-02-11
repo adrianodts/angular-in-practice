@@ -1,0 +1,38 @@
+<form (submit)="save($event)">
+    <!-- <modal (onShow)="opened($event)" (onHide)="closed($event)" > -->
+    <modal>
+        <h5 modal-title>Edit employee {{employee?.name}}</h5>
+        <div modal-body *ngIf="employee">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="mb-3">
+                            <label>Nome</label>
+                            <input type="text" name="name" class="form-control" [(ngModel)]="employee.name">
+                        </div>
+                        <div class="mb-3">
+                            <label>Salary</label>
+                            <div class="input-group">
+                                <div class="input-group-text">R$</div>
+                                <input type="number" name="salary" class="form-control" [(ngModel)]="employee.salary">
+                            </div>
+                        </div>
+                        <!-- <p *ngIf="salary < 1000"> -->
+                        <div class="mb-3" [hidden]="!(employee.salary < 1000)">
+                            <label>Bonus</label>
+                            <div class="input-group">
+                                <div class="input-group-text">R$</div>
+                                <input type="number" name="bonus" class="form-control" [(ngModel)]="employee.bonus">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div modal-footer>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <input type="submit" class="btn btn-primary" value="Save">
+            <!-- <input type="button" [disabled]="!(employee.salary > 0)"  class="btn btn-primary" value="Save" (click)="save($event)"> -->
+        </div>
+    </modal>
+</form>
