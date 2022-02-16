@@ -14,11 +14,13 @@ export class EmployeeListComponent implements OnInit {
   
   // @ViewChild(EmployeeNewModalComponent)
   // employeeNewModal: any;
+
+  // obtém a referencia de um elemento
   @ViewChild(EmployeeNewModalComponent) 
   employeeNewModal: any;
 
-
-  @ViewChild(EmployeeEditModalComponent)
+  // obtém a referencia de um elemento de outra forma
+  @ViewChild('employeeEditModal')
   employeeEditModal: any;
   
   @ViewChild(EmployeeDeleteModalComponent)
