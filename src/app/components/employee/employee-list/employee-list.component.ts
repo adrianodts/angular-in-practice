@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { EmployeeDeleteModalComponent } from '../employee-delete-modal/employee-delete-modal.component';
-import { EmployeeEditModalComponent } from '../employee-edit-modal/employee-edit-modal.component';
 import { EmployeeNewModalComponent } from '../employee-new-modal/employee-new-modal.component';
+import { EmployeeDetailModalComponent } from '../employee-detail-modal/employee-detail-modal.component';
 import { Employee, EmployeeService } from '../../../services/employee.service';
 
 
@@ -26,11 +26,15 @@ export class EmployeeListComponent implements OnInit {
   @ViewChild(EmployeeDeleteModalComponent)
   employeeDeleteModal: any;
 
+  @ViewChild(EmployeeDetailModalComponent)
+  employeeDetailModal: any
+
   showMessageSuccess = false;
   showMessageError = false;
   employee: any;
   employeeToEdit: any;
   employeeToDelete: any;
+  employeeToDetail: any
 
   employees: Array<Employee>;
 
@@ -57,6 +61,12 @@ export class EmployeeListComponent implements OnInit {
     this.employeeToEdit = employee;
     this.employeeEditModal.show();
   }
+  
+  public openDetailModal(employee: Employee) {
+    this.disableAlerts();
+    this.employeeToDetail = employee;
+    this.employeeDetailModal.show();
+  }
 
   public destroyEmployee(employee: Employee) {
     this.disableAlerts();
@@ -67,7 +77,6 @@ export class EmployeeListComponent implements OnInit {
   public onNewEmployee(employee: Employee) {
     this.showMessageSuccess = true;
     this.employee = employee;
-    console.log(employee);
   }
 
   public onEditEmployee(employee: Employee) {
