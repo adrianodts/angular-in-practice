@@ -1,0 +1,35 @@
+<modal>
+    <h5 modal-title>Employee Detail</h5>
+    <div modal-body>
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <th scope="row">Name</th>
+                    <td>{{employee?.name}}</td>    
+                </tr>
+                <tr>
+                    <th scope="row">Salary</th>
+                    <td [innerHtml]="employee?.salary | myCurrency" [salaryColor]="employee.salary"></td>
+                </tr>
+                <tr *ngIf="employee.salary < 1000; else notBonus">
+                    <th scope="row">Bonus</th>
+                    <td [innerHtml]="employee?.bonus | myCurrency"></td>
+                </tr>
+                <ng-template #notBonus>
+                    <tr>
+                        <th scope="row">Obs.:</th>
+                        <td>No Bonus</td>
+                    </tr>
+                </ng-template>
+            </tbody>
+        </table>
+        <div [ngSwitch]="true">
+            <span *ngSwitchCase="employee?.salary<1000">Lower Salary</span>
+            <span *ngSwitchCase="employee?.salary>=1000 && employee?.salary<10000">Middle Salary</span>
+            <span *ngSwitchCase="employee?.salary>=10000">Higher Salary</span>
+        </div>
+    </div>
+    <div modal-footer>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    </div>
+</modal>

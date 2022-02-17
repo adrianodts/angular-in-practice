@@ -1,12 +1,10 @@
-import { Directive, OnInit, Output, ViewChild, EventEmitter } from "@angular/core";
-import { ModalComponent } from "../components/modal/modal.component";
+import { Output, ViewChild, EventEmitter, Component } from "@angular/core";
+import { ModalComponent } from "./modal.component";
 
-declare const $: any;
-
-@Directive({
-    selector: 'base-modal'
+@Component({
+    template: ''
 })
-export class BaseModalDirective {
+export class BaseModal {
 
     @ViewChild(ModalComponent)
     modalComponent: any;
@@ -17,16 +15,15 @@ export class BaseModalDirective {
     @Output()
     onShow: EventEmitter<any> = new EventEmitter();
 
-    init(): void {
+    public init(): void {
         // this.modalComponent.onHide.subscribe((event: any) => {
         //     console.log(event);
         //     this.onHide.emit(event);
         // });
-
-        // this.modalComponent.onShow.subscribe((event: any) => {
-        //     console.log(event);
-        //     this.onShow.emit(event);
-        // });
+        this.modalComponent.onShow.subscribe((event: any) => {
+            console.log(event);
+            this.onShow.emit(event);
+        });
     }
 
     public hide() {
@@ -41,7 +38,7 @@ export class BaseModalDirective {
         console.log(event);
         this.onHide.emit(event);
     }
-  
+
     public opened(event: Event): void {
         console.log(event);
     }

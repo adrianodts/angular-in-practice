@@ -1,12 +1,15 @@
-import { Component, ElementRef, OnInit, Output, EventEmitter, Input, ViewChild} from '@angular/core';
+import { Component, ElementRef, Output, EventEmitter, Input, ViewChild} from '@angular/core';
 import { Employee } from '../../../services/employee.service';
-import { BaseModalDirective } from '../../../directives/base-modal.directive';
+import { BaseModal } from "../../modal/base-modal.component";
 @Component({
   selector: 'employee-edit-modal',
   templateUrl: './employee-edit-modal.component.html',
   styleUrls: ['./employee-edit-modal.component.css']
 })
-export class EmployeeEditModalComponent extends BaseModalDirective implements OnInit {
+export class EmployeeEditModalComponent extends BaseModal {
+
+  @ViewChild('inputName')
+  inputName: any
 
   @Input()
   employee: any;
@@ -25,7 +28,10 @@ export class EmployeeEditModalComponent extends BaseModalDirective implements On
   }
 
   ngOnInit(): void {
-    super.init();
+    //super.init();
+    this.onShow.subscribe(() => {
+      this.inputName.nativeElement.focus();
+    })
   }
 
 }
