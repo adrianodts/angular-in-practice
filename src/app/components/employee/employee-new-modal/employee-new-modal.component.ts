@@ -1,4 +1,5 @@
 import { Component, ElementRef, Output, EventEmitter, ViewChild, OnInit} from '@angular/core';
+import { InputDirective } from 'src/app/directives/input.directive';
 import { Employee, EmployeeService } from '../../../services/employee.service';
 import { BaseModal } from '../../modal/base-modal.component';
 
@@ -9,9 +10,12 @@ import { BaseModal } from '../../modal/base-modal.component';
 })
 export class EmployeeNewModalComponent extends BaseModal implements OnInit {
 
-  @ViewChild('inputName')
-  inputName: any
+  // @ViewChild(InputDirective)
+  // inputName: any
   
+  @ViewChild('inputSalary', { read: InputDirective })
+  inputName: any // ElementRef
+
   employee: Employee = this.newEmployee();
 
   @Output()
@@ -40,11 +44,11 @@ export class EmployeeNewModalComponent extends BaseModal implements OnInit {
   }
 
   
-  ngOnInit(): void {
-    super.init();
+  override ngOnInit(): void {
+    // super.init();
     this.onShow.subscribe(() => {
-      var el: ElementRef = this.inputName.nativeElement;
-      el.nativeElement.focus();
+      console.log(this.inputName)
+      this.inputName.focus();
     })
   }
 

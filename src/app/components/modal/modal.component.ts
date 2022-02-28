@@ -31,7 +31,7 @@ export class ModalComponent implements OnInit {
     // setTimeout(() => {
     //   console.log(this.element.nativeElement)
     // }, 1000)
-    console.log('constructor')
+    //console.log('constructor')
   }
 
   ngOnInit(): void {
@@ -59,7 +59,7 @@ export class ModalComponent implements OnInit {
   }
     
   private get divModal():HTMLElement {
-    console.log(this.element.nativeElement)
+    //console.log(this.element.nativeElement)
     const nativeElement:HTMLElement = this.element.nativeElement
     return nativeElement.firstChild as HTMLElement;
   }

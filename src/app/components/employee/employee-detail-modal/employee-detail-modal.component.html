@@ -9,9 +9,9 @@
                 </tr>
                 <tr>
                     <th scope="row">Salary</th>
-                    <td [innerHtml]="employee?.salary | myCurrency" [salaryColor]="employee.salary"></td>
+                    <td [innerHtml]="employee?.salary | myCurrency" [salaryColor]="employee?.salary"></td>
                 </tr>
-                <tr *ngIf="employee.salary < 1000; else notBonus">
+                <tr *ngIf="employee?.salary < 1000; else notBonus">
                     <th scope="row">Bonus</th>
                     <td [innerHtml]="employee?.bonus | myCurrency"></td>
                 </tr>

@@ -7,7 +7,7 @@ import { BaseModal } from '../../modal/base-modal.component';
   templateUrl: './employee-detail-modal.component.html',
   styleUrls: ['./employee-detail-modal.component.css']
 })
-export class EmployeeDetailModalComponent  extends BaseModal {
+export class EmployeeDetailModalComponent  extends BaseModal implements OnInit {
   
   @Input()
   employee: any
@@ -16,10 +16,8 @@ export class EmployeeDetailModalComponent  extends BaseModal {
     super();
   }
 
-  ngOnInit(): void {
-    // super.init();
-    // this.onShow.subscribe(() => {
-    //   console.log(this.employee);
-    // })
+  override ngOnInit(): void {
+    this.onShow.subscribe(() => {
+    })
   }
 }
