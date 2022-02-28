@@ -1,2 +1,25 @@
 <!-- <employee-new></employee-new> -->
-<employee-list></employee-list>
+<employee-list #employeeList></employee-list>
+
+<!-- 
+
+1- Template TemplateRef
+2- Componments (Dynamic)
+
+<ng-template #template>
+    <p>My template</p>
+    <employee-list #employeeList></employee-list>
+</ng-template>
+-->
+
+<ng-template appGetViewContainer></ng-template>
+
+<modal-header>
+    <h5>Testando Modal</h5>
+</modal-header>
+<modal-body>
+    <div>corpo modal</div>
+</modal-body>
+<modal-footer>
+    <div>rodape modal</div>
+</modal-footer>

@@ -3,6 +3,7 @@ import { EmployeeDeleteModalComponent } from '../employee-delete-modal/employee-
 import { EmployeeNewModalComponent } from '../employee-new-modal/employee-new-modal.component';
 import { EmployeeDetailModalComponent } from '../employee-detail-modal/employee-detail-modal.component';
 import { Employee, EmployeeService } from '../../../services/employee.service';
+import { ModalService } from '../../modal-dynamic/modal.service';
 
 
 @Component({
@@ -16,8 +17,8 @@ export class EmployeeListComponent implements OnInit {
   // employeeNewModal: any;
 
   // obtém a referencia de um elemento
-  @ViewChild(EmployeeNewModalComponent) 
-  employeeNewModal: any;
+  // @ViewChild(EmployeeNewModalComponent) 
+  // employeeNewModal: any;
 
   // obtém a referencia de um elemento de outra forma
   @ViewChild('employeeEditModal')
@@ -38,7 +39,7 @@ export class EmployeeListComponent implements OnInit {
 
   employees: Array<Employee>;
 
-  constructor(public employeeService: EmployeeService) { 
+  constructor(public employeeService: EmployeeService, private modalService: ModalService) { 
     this.employees = this.employeeService.employees;
 
 
@@ -53,7 +54,14 @@ export class EmployeeListComponent implements OnInit {
 
   public newEmployee() {
     this.disableAlerts();
-    this.employeeNewModal.show();
+    const modalRef = this.modalService.create(EmployeeNewModalComponent);
+    // modalRef.instance.onHide
+    //     .subscribe((data))
+    modalRef.onHide.subscribe((event: any) => {
+        console.log(event);
+    });
+    modalRef.show();
+    //this.employeeNewModal.show();
   }
 
   public editEmployee(employee: Employee) {

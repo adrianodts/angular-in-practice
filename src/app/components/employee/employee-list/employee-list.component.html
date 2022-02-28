@@ -59,6 +59,6 @@
 
 <!--  Serão carregados sob demanda para evitar processamentos prematuros -->
 <employee-detail-modal [employee]="employeeToDetail"></employee-detail-modal>
-<employee-new-modal employeeNewModal (onSubmit)="onNewEmployee($event)" (onHide)="opened($event)" (onShow)="closed($event)"></employee-new-modal>
+<!-- <employee-new-modal employeeNewModal (onSubmit)="onNewEmployee($event)" (onHide)="opened($event)" (onShow)="closed($event)"></employee-new-modal> -->
 <employee-edit-modal  #employeeEditModal [employee]="employeeToEdit" (onSubmit)="onEditEmployee($event)"></employee-edit-modal>
 <employee-delete-modal [employee]="employeeToDelete" (onDestroy)="onDestroyEmployee($event)"></employee-delete-modal> 

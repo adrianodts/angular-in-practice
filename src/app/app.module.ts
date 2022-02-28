@@ -19,6 +19,13 @@ import { MyCurrencyPipe } from './pipes/my-currency.pipe';
 import { ModalComponent } from './components/modal/modal.component';
 import { EmployeeDetailModalComponent } from './components/employee/employee-detail-modal/employee-detail-modal.component';
 import { InputDirective } from './directives/input.directive';
+import { GetViewContainerDirective } from './directives/get-view-container.directive';
+import { TestDynamicComponentComponent } from './components/test-dynamic-component/test-dynamic-component.component';
+import { ModalDynamicComponent } from './components/modal-dynamic/modal-dynamic.component'
+import { ModalHeaderComponent } from './components/modal-dynamic/modal-header/modal-header.component'
+import { ModalBodyComponent } from './components/modal-dynamic/modal-body/modal-body.component'
+import { ModalFooterComponent } from './components/modal-dynamic/modal-footer/modal-footer.component';
+import { TestModalDynamicComponent } from './components/test-modal-dynamic/test-modal-dynamic.component'
 //import { BaseModal } from './components/modal/base-modal.component'
 @NgModule({
   declarations: [
@@ -34,8 +41,25 @@ import { InputDirective } from './directives/input.directive';
     MyCurrencyPipe,
     ModalComponent,
     EmployeeDetailModalComponent,
+    TestDynamicComponentComponent,
     InputDirective,
+    GetViewContainerDirective,
+    ModalHeaderComponent,
+    ModalBodyComponent,
+    ModalFooterComponent,
+    TestModalDynamicComponent
     //BaseModal
+  ], 
+  entryComponents: [
+    TestDynamicComponentComponent,
+    EmployeeListComponent,
+    ModalDynamicComponent,
+    //TestModalDynamicComponent,
+    EmployeeNewModalComponent,
+    EmployeeEditModalComponent,
+    ModalHeaderComponent,
+    ModalBodyComponent,
+    ModalFooterComponent,
   ],
   imports: [
     BrowserModule,
