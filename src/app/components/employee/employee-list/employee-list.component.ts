@@ -4,6 +4,7 @@ import { EmployeeNewModalComponent } from '../employee-new-modal/employee-new-mo
 import { EmployeeDetailModalComponent } from '../employee-detail-modal/employee-detail-modal.component';
 import { Employee, EmployeeService } from '../../../services/employee.service';
 import { ModalService } from '../../modal-dynamic/modal.service';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -17,8 +18,8 @@ export class EmployeeListComponent implements OnInit {
   // employeeNewModal: any;
 
   // obtém a referencia de um elemento
-  // @ViewChild(EmployeeNewModalComponent) 
-  // employeeNewModal: any;
+  @ViewChild(EmployeeNewModalComponent) 
+  employeeNewModal: any;
 
   // obtém a referencia de um elemento de outra forma
   @ViewChild('employeeEditModal')
@@ -37,12 +38,19 @@ export class EmployeeListComponent implements OnInit {
   employeeToDelete: any;
   employeeToDetail: any
 
-  employees: Array<Employee>;
+  //employees: Array<Employee>;
+  employees: Employee[] = [];
 
-  constructor(public employeeService: EmployeeService, private modalService: ModalService) { 
-    this.employees = this.employeeService.employees;
+  successMessage = {
+    message: '',
+    show: false
+  };
 
-
+  constructor(
+    public employeeService: EmployeeService, 
+    private httpClient: HttpClient) { 
+      // private modalService: ModalService, 
+    //this.employees = this.employeeService.employees;
   }
   
   // ngAfterViewInit(): void {
@@ -50,23 +58,32 @@ export class EmployeeListComponent implements OnInit {
   // }
 
   ngOnInit(): void {
+    this.getEmployees();
   }
 
   public newEmployee() {
     this.disableAlerts();
-    const modalRef = this.modalService.create(EmployeeNewModalComponent);
-    // modalRef.instance.onHide
-    //     .subscribe((data))
-    modalRef.onHide.subscribe((event: any) => {
-        console.log(event);
-    });
-    modalRef.show();
-    //this.employeeNewModal.show();
+    // const modalRef = this.modalService.create(EmployeeNewModalComponent);
+    // // modalRef.instance.onHide
+    // //     .subscribe((data))
+    // modalRef.onHide.subscribe((event: any) => {
+    //     console.log(event);
+    // });
+    // modalRef.show();
+    this.employeeNewModal.show();
   }
 
   public editEmployee(employee: Employee) {
     this.disableAlerts();
     this.employeeToEdit = employee;
+    this.employeeEditModal.onHide.subscribe((event: any) => {
+      const eventData = event.data;
+      if (eventData && eventData.hasOwnProperty('employee')) {
+          const employee = eventData.employee;
+          const message = `O empregado <strong>${employee.name}</strong> foi alterado com sucesso`;
+          this.showSuccessMesage(message);
+      }
+  });
     this.employeeEditModal.show();
   }
   
@@ -98,6 +115,7 @@ export class EmployeeListComponent implements OnInit {
   }
 
   public disableAlerts() {
+    this.getEmployees();
     this.showMessageSuccess = false;
     this.showMessageError = false;
   }
@@ -108,6 +126,22 @@ export class EmployeeListComponent implements OnInit {
 
   public opened(event: Event): void {
       console.log(event);
+  }
+
+  showSuccessMesage(message: string) {
+    this.getEmployees();
+    this.successMessage.message = message;
+    this.successMessage.show = true;
+    setTimeout(() => {
+          this.successMessage.show = false;
+      }, 3000);
+  }
+
+  public getEmployees() {
+    this.httpClient
+      .get<Employee[]>("http://localhost:3000/employee")
+      .subscribe(data => this.employees = data
+    );
   }
 }
 

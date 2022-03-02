@@ -1,10 +1,8 @@
-<modal-header>
-    <h5 class="modal-title" modal-title>New Employee</h5>
-</modal-header>
 <form (submit)="add($event)">
     <!-- <modal (onShow)="opened($event)" (onHide)="closed($event)"> -->
-    <modal-body>
-        <div>
+    <modal>
+        <h5 class="modal-title" modal-title>New Employee</h5>
+        <div class="modal-body" modal-body>
             <div class="card">
                 <div class="card-body">
                     <div class="row">
@@ -36,17 +34,15 @@
                                 <input type="number" name="bonus" class="form-control" [(ngModel)]="employee.bonus">
                             </div>
                         </div>
-                       <!-- {{employee.name}}
+                        <!-- {{employee.name}}
                         <p is="Informação">{{employee.name}}</p> -->
                     </div>
                 </div>
             </div>
         </div>
-    </modal-body>
-    <modal-footer>        
-        <div>
+        <div class="modal-footer" modal-footer>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button [disabled]="!(employee.salary > 0)" type="submit" class="btn btn-primary">Add</button>
         </div>
-    </modal-footer>
+</modal>
 </form>

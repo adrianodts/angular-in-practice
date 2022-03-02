@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID } from '@angular/core';
 import localePt from '@angular/common/locales/pt';
@@ -63,7 +64,8 @@ import { TestModalDynamicComponent } from './components/test-modal-dynamic/test-
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [{
     provide: LOCALE_ID, 

@@ -33,16 +33,16 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     // this can be used on ngOnInit because of the directive GetViewContainerDirective.
-    setInterval(() => {
-      this.getViewContainer.viewContainerRef.clear();
-      this.indexComponents ++;
-      if (this.indexComponents === this.components.length) {
-        this.indexComponents = 0;
-      }
-      this.getViewContainer.createComponent(this.components[this.indexComponents]);
-    }, 4000);
-    const modalRef = this.modalService.create(TestModalDynamicComponent);
-    modalRef.show();
+    // setInterval(() => {
+    //   this.getViewContainer.viewContainerRef.clear();
+    //   this.indexComponents ++;
+    //   if (this.indexComponents === this.components.length) {
+    //     this.indexComponents = 0;
+    //   }
+    //   this.getViewContainer.createComponent(this.components[this.indexComponents]);
+    // }, 4000);
+    // const modalRef = this.modalService.create(TestModalDynamicComponent);
+    // modalRef.show();
   }
 
   /*

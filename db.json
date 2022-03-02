@@ -1,0 +1,34 @@
+{
+  "employee": [
+    {
+      "id": 1,
+      "name": "Fulano de Tal",
+      "salary": 999,
+      "bonus": 1
+    },
+    {
+      "id": 2,
+      "name": "Beltrano",
+      "salary": 9999,
+      "bonus": 0
+    },
+    {
+      "id": 3,
+      "name": "Cicrano",
+      "salary": 99999,
+      "bonus": 0
+    },
+    {
+      "name": "Adriano Dantas",
+      "salary": 12,
+      "bonus": 0,
+      "id": 4
+    },
+    {
+      "name": "Adriano",
+      "salary": 1,
+      "bonus": 0,
+      "id": 5
+    }
+  ]
+}

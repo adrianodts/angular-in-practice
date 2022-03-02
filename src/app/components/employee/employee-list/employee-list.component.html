@@ -25,16 +25,19 @@
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tr *ngFor="let employee of employees; let i=index" [id]="'tr'+i">
+                <!-- <tr *ngFor="let employee of employees; let i=index" [id]="'tr'+i"> -->
+                <tr *ngFor="let employee of employees;">
                     <!-- tag estrutural evitar "bambiarras como div, span etc.. "-->
                     <ng-container *ngIf="employee.salary > 1000; else cheapSalary">
                         <!-- <td>{{employee.name}}</td> -->
                         <!-- <td>{{employee.salary}}</td> -->
-                        <td [innerHtml]="i"></td>
+                        <!-- <td [innerHtml]="i"></td> -->
+                        <td [innerHtml]="employee.id"></td>
                         <td><a href="javascript:void(0)" (click)="openDetailModal(employee)">{{employee.name}}</a></td>
                         <!-- <td [style.color]="getSalaryColor(employee)"  [innerHtml]="employee.salary"></td> -->
                         <!-- <td [ngClass]="getSalaryColor(employee)" [innerHtml]="employee.salary"></td> -->
-                        <td [innerHtml]="employee.salary | myCurrency" [salaryColor]="employee.salary" anotherValue="{{i}}"></td>
+                        <!-- <td [innerHtml]="employee.salary | myCurrency" [salaryColor]="employee.salary" anotherValue="{{i}}"></td> -->
+                        <td [innerHtml]="employee.salary | myCurrency" [salaryColor]="employee.salary"></td>
                         <td [innerHtml]="employee.bonus | myCurrency"></td>
                         <td class="mb-3">
                             <a href="javascript:void(0)" (click)="editEmployee(employee)">Edit</a>|
@@ -42,9 +45,9 @@
                         </td>
                     </ng-container>
                     <ng-template #cheapSalary>
-                        <td [innerHtml]="i"></td>
+                        <td [innerHtml]="employee.id"></td>
                         <td><a href="javascript:void(0)" (click)="openDetailModal(employee)">{{employee.name}}</a></td>
-                        <td [innerHtml]="employee.salary | myCurrency" [salaryColor]="employee.salary" anotherValue="{{i}}"></td>
+                        <td [innerHtml]="employee.salary | myCurrency" [salaryColor]="employee.salary"></td>
                         <td [innerHtml]="employee.bonus | myCurrency"></td>
                         <td class="mb-3">
                             <a href="javascript:void(0)" (click)="editEmployee(employee)">Edit</a> | Can't delete
@@ -59,6 +62,6 @@
 
 <!--  Serão carregados sob demanda para evitar processamentos prematuros -->
 <employee-detail-modal [employee]="employeeToDetail"></employee-detail-modal>
-<!-- <employee-new-modal employeeNewModal (onSubmit)="onNewEmployee($event)" (onHide)="opened($event)" (onShow)="closed($event)"></employee-new-modal> -->
+<employee-new-modal employeeNewModal (onSubmit)="onNewEmployee($event)" (onHide)="closed($event)" (onShow)="opened($event)"></employee-new-modal>
 <employee-edit-modal  #employeeEditModal [employee]="employeeToEdit" (onSubmit)="onEditEmployee($event)"></employee-edit-modal>
 <employee-delete-modal [employee]="employeeToDelete" (onDestroy)="onDestroyEmployee($event)"></employee-delete-modal> 

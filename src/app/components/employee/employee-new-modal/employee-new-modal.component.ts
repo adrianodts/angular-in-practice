@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, Output, EventEmitter, ViewChild, OnInit} from '@angular/core';
 import { InputDirective } from 'src/app/directives/input.directive';
 import { Employee, EmployeeService } from '../../../services/employee.service';
@@ -21,18 +22,24 @@ export class EmployeeNewModalComponent extends BaseModal implements OnInit {
   @Output()
   onSubmit: EventEmitter<Employee> = new EventEmitter<Employee>();
 
-  constructor(private employeeService: EmployeeService) { 
+  
+  // constructor(private employeeService: EmployeeService, private httpCliente: HttpClient) { 
+  constructor(private httpClient: HttpClient) {
     super();
   }
 
   public add(event: Event): void {
     console.log(event);
     const employeeNew = Object.assign({}, this.employee);
-    this.employeeService.addEmployee(employeeNew);
-    console.log(this.employeeService.employees);
-    this.onSubmit.emit(employeeNew);
-    this.employee = this.newEmployee();
-    this.hide();
+    // this.employeeService.addEmployee(employeeNew);
+    // console.log(this.employeeService.employees);
+    this.httpClient
+      .post<Employee>("http://localhost:3000/employee", this.employee)
+      .subscribe(data => {
+        this.onSubmit.emit(employeeNew);
+        this.employee = data;
+        this.hide();
+      });
   }
 
   private newEmployee(): Employee {
